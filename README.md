@@ -1,4 +1,4 @@
-# Naciendo hacia el Futuro con "Deep Fake Voice Recognition"
+"Deep Fake Voice Recognition"
 
 ¡Bienvenido a un nuevo comienzo en mi proyecto personal de "Deep Fake Voice Recognition". Este proyecto acaba de nacer y, como tal, representa un paso inicial en un emocionante viaje hacia el futuro de la tecnología de reconocimiento de voz.
 
