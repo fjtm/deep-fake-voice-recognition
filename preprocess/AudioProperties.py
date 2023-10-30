@@ -205,6 +205,19 @@ class ProcessAudio(AudioProperties):
 
         return self.create_dataframe_from_dict(data_transformed)
 
+    def get_label(self) -> str:
+
+        """
+        Create a pandas DataFrame from a dictionary of NumPy arrays with specific column naming.
+
+        Args:
+            None
+        Returns:
+            self.label (str): REAL or FAKE label
+        """
+        self.label = self.audio_path.split("/")[2]
+        return self.label
+
     def create_dataframe_from_dict(self, data_dict: Dict[str, np.ndarray]) -> pd.DataFrame:
         """
         Create a pandas DataFrame from a dictionary of NumPy arrays with specific column naming.
@@ -231,4 +244,7 @@ class ProcessAudio(AudioProperties):
         # Create a pandas DataFrame from the dictionary
         df_audio = pd.DataFrame(column_data)
 
+        # Add data label
+        self.get_label() 
+        df_audio["label"] = [self.label]*df_audio.shape[0]
         return df_audio
