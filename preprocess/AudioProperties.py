@@ -208,7 +208,7 @@ class ProcessAudio(AudioProperties):
     def get_label(self) -> str:
 
         """
-        Create a pandas DataFrame from a dictionary of NumPy arrays with specific column naming.
+        Get string label from path.
 
         Args:
             None
@@ -217,6 +217,18 @@ class ProcessAudio(AudioProperties):
         """
         self.label = self.audio_path.split("/")[2]
         return self.label
+
+    def get_index(self) -> str:
+        """
+        Create a pandas DataFrame from a dictionary of NumPy arrays with specific column naming.
+
+        Args:
+            None
+        Returns:
+            self.ind (str): Name index of the audio
+        """ 
+        self.ind = self.audio_path.split("/")[-1].replace(".wav","")
+        return self.ind
 
     def create_dataframe_from_dict(self, data_dict: Dict[str, np.ndarray]) -> pd.DataFrame:
         """
@@ -247,4 +259,9 @@ class ProcessAudio(AudioProperties):
         # Add data label
         self.get_label() 
         df_audio["label"] = [self.label]*df_audio.shape[0]
+
+        # Add data index
+        self.get_index()
+        df_audio["ind"] = [self.ind]*df_audio.shape[0]
+
         return df_audio
