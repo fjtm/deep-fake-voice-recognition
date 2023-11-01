@@ -1,7 +1,12 @@
+
 import numpy as np
 import pandas as pd
 import librosa
 from typing import Optional, Any, List, Dict
+import concurrent.futures
+import os
+from IPython.display import clear_output
+import time
 
 class AudioProperties():
     def __init__(self, audio_path: str, sr: Optional[int] = None, **kwargs: Any):
@@ -265,3 +270,64 @@ class ProcessAudio(AudioProperties):
         df_audio["ind"] = [self.ind]*df_audio.shape[0]
 
         return df_audio
+
+def process_audio_files(audio_files: List[str], num_threads: int = None) -> List[pd.DataFrame]:
+    """
+    Process a list of audio files in parallel using a ThreadPoolExecutor.
+
+    Args:
+        audio_files (list): List of audio file paths to be processed.
+        num_threads (int, optional): Number of threads to use. If not specified, it will use the CPU core count.
+
+    Returns:
+        list: List of results from processing each audio file.
+
+    Raises:
+        Exception: Any exception raised during audio processing.
+
+    Example:
+        audio_files = ["file1.wav", "file2.wav"]
+        results = process_audio_files(audio_files)
+    """
+    # Get the number of CPU cores
+    num_cores = num_threads if num_threads is not None else os.cpu_count()
+
+    # Create a ThreadPoolExecutor with the specified or default number of threads
+    with concurrent.futures.ThreadPoolExecutor(max_workers=num_cores) as executor:
+        # Submit audio processing tasks and keep track of futures
+        futures = [executor.submit(lambda audio_file: ProcessAudio(audio_file).transform(), audio_file) for audio_file in audio_files]
+
+        # Track progress
+        completed = 0
+        total = len(futures)
+
+        # Start the timer
+        start_time = time.time()
+
+        results = []
+
+        for future in concurrent.futures.as_completed(futures):
+            completed += 1
+            progress = (completed / total) * 100
+
+            # Clear the output before each print
+            clear_output(wait=True)
+
+            print(f"Progress: {completed}/{total} ({progress:.2f}%)")
+
+            try:
+                # Get the result of the completed task and store it in the results list
+                result = future.result()
+                results.append(result)
+            except Exception as e:
+                # Handle any exception raised during audio processing
+                results.append(e)
+                print(f"Error processing audio: {e}")
+
+        # Stop the timer
+        end_time = time.time()
+
+    print("Processing completed.")
+    print(f"Total time taken: {end_time - start_time:.2f} seconds")
+
+    return results
