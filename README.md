@@ -1,9 +1,9 @@
-"Deep Fake Voice Recognition"
+# "Deep Fake Voice Recognition"
 
-¡Bienvenido a un nuevo comienzo en mi proyecto personal de "Deep Fake Voice Recognition". Este proyecto acaba de nacer y, como tal, representa un paso inicial en un emocionante viaje hacia el futuro de la tecnología de reconocimiento de voz.
+Welcome to a fresh start in my personal project of "Deep Fake Voice Recognition." This project has just come into existence and, as such, marks an initial step in an exciting journey towards the future of voice recognition technology.
 
-En este rincón de GitHub, comparto mis primeros pasos en la creación de modelos de voz basados en "Deep Fake". A medida que avanzamos juntos desde los primeros momentos de este proyecto, espero que este espacio se convierta en un lugar donde podamos explorar y colaborar, compartiendo ideas y recursos en el apasionante mundo de la convergencia entre la inteligencia artificial y la voz humana.
+In this corner of GitHub, I share my early strides in creating voice models based on "Deep Fake." As we progress together from the project's inception, I hope this space will become a place where we can explore and collaborate, sharing ideas and resources in the thrilling realm of the convergence between artificial intelligence and human voice.
 
-Este es un proyecto personal que está tomando forma día a día, y estoy ansioso por ver hacia dónde nos llevará en el futuro. Espero que encuentres valor en este proyecto recién nacido y que te unas a mí en este emocionante viaje hacia lo desconocido en el reconocimiento de voz.
+This is a personal project that's taking shape day by day, and I'm eager to see where it will lead us in the future. I hope you find value in this newborn project and will join me on this thrilling journey into the unknown in voice recognition.
 
-¡Bienvenido a esta nueva aventura!
+Welcome to this new adventure!
